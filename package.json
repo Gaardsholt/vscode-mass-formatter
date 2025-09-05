@@ -22,7 +22,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onStartupFinished"
+    "onCommand:format-all.formatAllFiles"
   ],
   "main": "./dist/extension.js",
   "browser": "./dist/extension.js",
