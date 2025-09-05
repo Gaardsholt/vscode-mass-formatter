@@ -116,7 +116,7 @@ export function activate(context: vscode.ExtensionContext) {
                 await document.save();
               }
             } catch (e) {
-              console.error(`Could not format ${file.fsPath}`, e);
+              vscode.window.showErrorMessage(`Could not format ${vscode.workspace.asRelativePath(file)}: ${e}`);
             }
           }
         }
