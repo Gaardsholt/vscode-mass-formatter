@@ -11,7 +11,7 @@ export function activate(context: vscode.ExtensionContext) {
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
   const disposable = vscode.commands.registerCommand(
-    "format-all.formatAllFiles",
+    "format-all-files.formatAllFiles",
     async () => {
       const workspaceFolders = vscode.workspace.workspaceFolders;
       if (!workspaceFolders) {
@@ -36,7 +36,7 @@ export function activate(context: vscode.ExtensionContext) {
       // Get ignored globs from settings
       const ignoreGlobs =
         vscode.workspace
-          .getConfiguration("format-all")
+          .getConfiguration("format-all-files")
           .get<string[]>("ignore") || [];
 
       // Cache for ignore instances
