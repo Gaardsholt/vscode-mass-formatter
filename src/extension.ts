@@ -39,30 +39,39 @@ export function activate(context: vscode.ExtensionContext) {
           .getConfiguration("format-all")
           .get<string[]>("ignore") || [];
 
+      // Cache for ignore instances
+      const ignoreCache = new Map<string, ReturnType<typeof ignore>>();
+
       // Find all files in the workspace
       const allFiles = await vscode.workspace.findFiles("**/*");
 
-      // Helper: collect all .gitignore rules for a file, from its dir up to workspace root
-      function getIgnoreForFile(filePath: string): ReturnType<typeof ignore> {
-        const ig = ignore();
-        let dir = path.dirname(filePath);
+      // Helper: get ignore rules for a directory, using cache
+      function getIgnoreForDir(dir: string): ReturnType<typeof ignore> {
+        if (ignoreCache.has(dir)) {
+          return ignoreCache.get(dir)!;
+        }
+
         const root = workspaceFolder.uri.fsPath;
-        const stack: string[] = [];
-        // Walk up from file's dir to workspace root, collecting .gitignore contents
-        while (dir.startsWith(root)) {
-          if (gitignoreMap.has(dir)) {
-            stack.push(gitignoreMap.get(dir)!);
-          }
-          if (dir === root) {
-            break;
-          }
-          dir = path.dirname(dir);
+        let ig: ReturnType<typeof ignore>;
+
+        if (dir === root) {
+          ig = ignore();
+          ig.add(ignoreGlobs);
+        } else {
+          const parentDir = path.dirname(dir);
+          const parentIg = getIgnoreForDir(parentDir);
+          // Create a new ignore instance with the parent's rules
+          const parentRules = (parentIg as any)._rules.map(
+            (rule: any) => rule.origin
+          );
+          ig = ignore().add(parentRules);
         }
-        // Add rules from root to leaf
-        for (let i = stack.length - 1; i >= 0; i--) {
-          ig.add(stack[i]);
+
+        if (gitignoreMap.has(dir)) {
+          ig.add(gitignoreMap.get(dir)!);
         }
-        ig.add(ignoreGlobs);
+
+        ignoreCache.set(dir, ig);
         return ig;
       }
 
@@ -71,7 +80,8 @@ export function activate(context: vscode.ExtensionContext) {
           workspaceFolder.uri.fsPath,
           file.fsPath
         );
-        const ig = getIgnoreForFile(file.fsPath);
+        const dir = path.dirname(file.fsPath);
+        const ig = getIgnoreForDir(dir);
         return !ig.ignores(relativePath);
       });
 
@@ -116,7 +126,11 @@ export function activate(context: vscode.ExtensionContext) {
                 await document.save();
               }
             } catch (e) {
-              vscode.window.showErrorMessage(`Could not format ${vscode.workspace.asRelativePath(file)}: ${e}`);
+              vscode.window.showErrorMessage(
+                `Could not format ${vscode.workspace.asRelativePath(
+                  file
+                )}: ${e}`
+              );
             }
           }
         }
