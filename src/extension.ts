@@ -55,7 +55,7 @@ export function activate(context: vscode.ExtensionContext) {
         const ig = ignore();
         ig.add(ignoreGlobs);
 
-        const pathParts = path.relative(root, dir).split(path.sep);
+        const pathParts = path.relative(root, dir).split(path.sep).filter(Boolean);
         let currentPath = root;
 
         if (gitignoreMap.has(currentPath)) {
