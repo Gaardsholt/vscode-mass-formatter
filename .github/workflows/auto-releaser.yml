@@ -1,0 +1,22 @@
+name: Auto Releaser
+
+on:
+  # Run manually
+  workflow_dispatch:
+  # Or on a schedule
+  schedule:
+    # At 13:37 on day-of-month 7.
+    - cron: "37 13 7 * *"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Publish Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DRAFT_RELEASE=$(gh release list --json "isDraft,tagName" --jq '.[] | select(.isDraft == true).tagName')
+          gh release edit "$DRAFT_RELEASE" --draft=false --latest

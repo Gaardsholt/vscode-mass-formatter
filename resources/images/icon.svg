@@ -1,0 +1,29 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" rx="24" fill="#252526" />
+  <g clip-path="url(#clip0)">
+    <!-- Magic Wand -->
+    <g transform="rotate(-45 64 64)">
+      <!-- Wand stick -->
+      <rect x="58" y="60" width="12" height="60" fill="#A0522D" rx="6" />
+      <!-- Star on top of the wand -->
+      <path
+        d="M64 25 L69.16 41.84L88 44.32L72.48 56.16L77.32 72L64 62.8L50.68 72L55.52 56.16L40 44.32L58.84 41.84L64 25Z"
+        fill="#FFD700" />
+    </g>
+
+    <!-- Sparkles -->
+    <circle cx="30" cy="35" r="4" fill="#FFFFFF" />
+    <circle cx="35" cy="45" r="2" fill="#FFD700" />
+    <circle cx="95" cy="85" r="4" fill="#FFFFFF" />
+    <circle cx="90" cy="95" r="2" fill="#FFD700" />
+
+    <!-- Code representation -->
+    <text x="20" y="100" font-family="monospace" font-size="24" fill="#888888">&lt;/&gt;</text>
+    <text x="85" y="40" font-family="monospace" font-size="24" fill="#888888">{}</text>
+  </g>
+  <defs>
+    <clipPath id="clip0">
+      <rect width="128" height="128" rx="24" fill="white" />
+    </clipPath>
+  </defs>
+</svg>
