@@ -1,6 +1,6 @@
 {
   "name": "mass-formatter",
-  "displayName": "Mass Formatter",
+  "displayName": "Mass File Formatter",
   "description": "Format all files in your workspace with a single command, respecting your .gitignore files and custom ignore settings.",
   "version": "0.0.1",
   "publisher": "Gaardsholt",
