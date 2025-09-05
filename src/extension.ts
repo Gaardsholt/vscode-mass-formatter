@@ -52,23 +52,21 @@ export function activate(context: vscode.ExtensionContext) {
         }
 
         const root = workspaceFolder.uri.fsPath;
-        let ig: ReturnType<typeof ignore>;
+        const ig = ignore();
+        ig.add(ignoreGlobs);
 
-        if (dir === root) {
-          ig = ignore();
-          ig.add(ignoreGlobs);
-        } else {
-          const parentDir = path.dirname(dir);
-          const parentIg = getIgnoreForDir(parentDir);
-          // Create a new ignore instance with the parent's rules
-          const parentRules = (parentIg as any)._rules.map(
-            (rule: any) => rule.origin
-          );
-          ig = ignore().add(parentRules);
+        const pathParts = path.relative(root, dir).split(path.sep).filter(Boolean);
+        let currentPath = root;
+
+        if (gitignoreMap.has(currentPath)) {
+          ig.add(gitignoreMap.get(currentPath)!);
         }
 
-        if (gitignoreMap.has(dir)) {
-          ig.add(gitignoreMap.get(dir)!);
+        for (const part of pathParts) {
+          currentPath = path.join(currentPath, part);
+          if (gitignoreMap.has(currentPath)) {
+            ig.add(gitignoreMap.get(currentPath)!);
+          }
         }
 
         ignoreCache.set(dir, ig);
