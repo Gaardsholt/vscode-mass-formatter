@@ -1,0 +1,79 @@
+{
+  "name": "format-all",
+  "displayName": "format-all",
+  "description": "Format all files in your workspace with a single command, respecting your .gitignore files and custom ignore settings.",
+  "version": "0.0.1",
+  "publisher": "Gaardsholt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gaardsholt/vscode-format-all"
+  },
+  "icon": "resources/images/icon.png",
+  "homepage": "https://github.com/Gaardsholt/vscode-format-all/blob/master/README.md",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/Gaardsholt/vscode-format-all/issues"
+  },
+  "engines": {
+    "vscode": "^1.101.0"
+  },
+  "categories": [
+    "Formatters",
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "browser": "./dist/extension.js",
+  "extensionKind": [
+    "workspace",
+    "ui"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "format-all.formatAllFiles",
+        "title": "Format All Files in Workspace"
+      }
+    ],
+    "configuration": {
+      "title": "Format All",
+      "properties": {
+        "format-all.ignore": {
+          "type": "array",
+          "default": [],
+          "description": "An array of glob patterns to ignore when formatting files."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "vsce package --no-dependencies",
+    "deploy": "vsce publish",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^24.3.1",
+    "@types/vscode": "^1.101.0",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.6.0",
+    "eslint": "^9.25.1",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
+    "webpack": "^5.99.7",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "ignore": "^7.0.5"
+  }
+}

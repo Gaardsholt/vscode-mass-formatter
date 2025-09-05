@@ -1,0 +1,20 @@
+version: 2
+
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 10
+    groups:
+      eslint:
+        patterns:
+        - "@typescript-eslint/*"
+        - "typescript-eslint"
+        - "eslint"
+        - "@eslint/*"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 10
