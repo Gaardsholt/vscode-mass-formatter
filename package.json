@@ -1,18 +1,18 @@
 {
-  "name": "format-all-files",
-  "displayName": "Format All",
+  "name": "mass-formatter",
+  "displayName": "Mass Formatter",
   "description": "Format all files in your workspace with a single command, respecting your .gitignore files and custom ignore settings.",
   "version": "0.0.1",
   "publisher": "Gaardsholt",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Gaardsholt/vscode-format-all-files"
+    "url": "https://github.com/Gaardsholt/vscode-mass-formatter"
   },
   "icon": "resources/images/icon.png",
-  "homepage": "https://github.com/Gaardsholt/vscode-format-all-files/blob/master/README.md",
+  "homepage": "https://github.com/Gaardsholt/vscode-mass-formatter/blob/master/README.md",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-    "url": "https://github.com/Gaardsholt/vscode-format-all-files/issues"
+    "url": "https://github.com/Gaardsholt/vscode-mass-formatter/issues"
   },
   "engines": {
     "vscode": "^1.103.0"
@@ -30,7 +30,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "format-all-files.formatAllFiles",
+        "command": "mass-formatter.formatAllFiles",
         "title": "Format All Files in Workspace"
       }
     ],
