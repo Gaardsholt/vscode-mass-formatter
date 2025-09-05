@@ -31,13 +31,13 @@
     "commands": [
       {
         "command": "mass-formatter.formatAllFiles",
-        "title": "Format All Files in Workspace"
+        "title": "Mass Formatter: Format All Files in Workspace"
       }
     ],
     "configuration": {
-      "title": "Format All",
+      "title": "Mass Formatter",
       "properties": {
-        "format-all.ignore": {
+        "mass-formatter.ignore": {
           "type": "array",
           "default": [],
           "description": "An array of glob patterns to ignore when formatting files."

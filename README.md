@@ -1,4 +1,4 @@
-# Format All
+# Mass Formatter
 
 This Visual Studio Code extension allows you to format all files in your workspace with a single command, respecting your `.gitignore` files and custom ignore settings.
 
