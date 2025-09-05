@@ -17,9 +17,9 @@ When you run the "Format All Files in Workspace" command, the extension will:
 2.  Find all `.gitignore` files in your workspace and use them to build a list of files to ignore.
 3.  Read the `format-all.ignore` configuration for any additional files to ignore.
 4.  For every file that is not ignored, it will:
-    a. Open the file in the editor.
-    b. Execute the standard `editor.action.formatDocument` command, which uses your configured default formatter for that file type.
-    c. Save the file.
+    a. Open the file's content in memory.
+    b. Programmatically request formatting edits from the configured default formatter for that file type.
+    c. Apply the edits and save the file if it was changed.
 
 ## Commands
 
