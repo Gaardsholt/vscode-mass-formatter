@@ -15,6 +15,8 @@ jobs:
       contents: write
     steps:
       - name: Publish Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           DRAFT_RELEASE=$(gh release list --json "isDraft,tagName" --jq '.[] | select(.isDraft == true).tagName')
           gh release edit "$DRAFT_RELEASE" --draft=false --latest
