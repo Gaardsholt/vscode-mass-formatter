@@ -11,7 +11,7 @@ This Visual Studio Code extension allows you to format all files in your workspa
 
 ## How it Works
 
-When you run the "Format All Files in Workspace" command, the extension will:
+When you run the "Mass Formatter: Format All Files" command, the extension will:
 
 1.  Scan your entire workspace for files.
 2.  Find all `.gitignore` files in your workspace and use them to build a list of files to ignore.
@@ -25,7 +25,7 @@ When you run the "Format All Files in Workspace" command, the extension will:
 
 This extension contributes the following command to the Command Palette:
 
-- `Format All Files in Workspace`: Formats all files in the current workspace.
+- `Mass Formatter: Format All Files`: Formats all files in the current workspace.
 
 ## Extension Settings
 
