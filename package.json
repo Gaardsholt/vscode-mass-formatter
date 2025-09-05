@@ -1,6 +1,6 @@
 {
   "name": "format-all",
-  "displayName": "format-all",
+  "displayName": "Format All",
   "description": "Format all files in your workspace with a single command, respecting your .gitignore files and custom ignore settings.",
   "version": "0.0.1",
   "publisher": "Gaardsholt",
