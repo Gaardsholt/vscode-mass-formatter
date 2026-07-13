@@ -67,7 +67,7 @@
     "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.9.1",
     "eslint": "^10.3.0",
-    "ts-loader": "^9.5.7",
+    "ts-loader": "^9.6.0",
     "typescript": "^5.9.3",
     "webpack": "^5.107.2",
     "webpack-cli": "^7.0.2"
