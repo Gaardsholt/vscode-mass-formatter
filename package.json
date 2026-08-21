@@ -73,6 +73,6 @@
     "webpack-cli": "^7.2.2"
   },
   "dependencies": {
-    "ignore": "^7.0.5"
+    "ignore": "^7.0.6"
   }
 }
